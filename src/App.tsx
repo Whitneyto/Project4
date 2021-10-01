@@ -9,6 +9,7 @@ function App() {
   return (
     <div className="App">
       <HeaderBar></HeaderBar>
+      <p>Weather Forcast</p>
       <Weather></Weather>
       <FooterBar></FooterBar>
     </div>
