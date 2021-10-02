@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import {useState} from "react";
 import weatherlogo from "../assets/imgs/mainweather.png";
-import { fetchURL } from "../scripts/fetchURL";
-import { Display } from "./Display";
+import {fetchURL} from "../scripts/fetchURL";
+import {Display} from "./Display";
 import "../assets/stylesheet/userinput.css";
 
 let isClicked: boolean = false;
@@ -9,20 +9,13 @@ export function UserInput(): JSX.Element {
   const [userInput, setUserInput] = useState<string>("Newark,Delaware");
   const [url, setURL] = useState<string>("");
   const [mode, setMode] = useState<string>("current");
-  const [dd, setDD] = useState<string>("Select View");
+  const [dd, setDD] = useState<string>("Current Weather ");
   return (
     <div>
       <div className="main-weather-logo">
         <img src={weatherlogo}></img>
       </div>
-      <div>
-        <input
-          className="location-input"
-          placeholder="Newark, Delaware, USA"
-          onChange={(e) => {
-            isClicked = false;
-            setUserInput(e.target.value);
-          }}></input>
+      <div className="input-field">
         <div className="dropdown">
           <button
             className="btn btn-primary dropdown-toggle"
@@ -55,16 +48,23 @@ export function UserInput(): JSX.Element {
             </li>
           </ul>
         </div>
-      </div>
-      <p>
-        <button
+        <input
+          className="location-input"
+          placeholder="Newark, Delaware, USA"
+          onChange={(e) => {
+            isClicked = false;
+            setUserInput(e.target.value);
+          }}></input>
+          <button 
+          className="btn btn-primary"
+          id="GO-button"
           onClick={() => {
             setURL(fetchURL(userInput, mode));
             isClicked = true;
           }}>
-          Check Out Weather!
+          GO!
         </button>
-      </p>
+      </div>
       {isClicked && <Display url={url} mode={mode} dd={dd}></Display>}
     </div>
   );
