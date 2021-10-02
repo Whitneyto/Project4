@@ -1,13 +1,8 @@
-import axios from "axios";
 import {useEffect, useState} from "react";
 import {dataType} from "../interfaces/weather";
 
-let isCurrent: boolean;
 export function Display({url, mode, dd}: {url: string; mode: string; dd: string}): JSX.Element {
   const [myData, setMyData] = useState<dataType>();
-  const [city, setCity] = useState<string>();
-  const [region, setRegion] = useState<string>();
-  const [country, setCountry] = useState<string>();
 
   console.log(url);
   useEffect(() => {
@@ -16,11 +11,6 @@ export function Display({url, mode, dd}: {url: string; mode: string; dd: string}
       .then((data) => {
         try {
           setMyData(data);
-          setCity(data.location.name);
-          setRegion(data.location.region);
-          setCountry(data.location.country);
-          console.log(data.current.condition.text);
-          console.log("loca:" + city);
         } catch (e) {
           console.log("Error:" + e);
         }
@@ -31,12 +21,24 @@ export function Display({url, mode, dd}: {url: string; mode: string; dd: string}
     <div>
       <div>
         {dd} of {myData?.location.name} {"," + myData?.location.region}{" "}
-        {"," + myData?.location.country}{" "}
+        {"," + myData?.location.country}
+        {"|"}
+        {myData?.location.localtime}
       </div>
-      <div>
-        <p>Temperature [F] : {myData?.current.temp_f}</p>
-        <p>Temperature [C] : {myData?.current.temp_c}</p>
-        <p>{myData?.current.condition.text}</p>
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-4">
+            <img src={myData?.current.condition.icon}></img>
+            <p>{myData?.current.condition.text}</p>
+          </div>
+          <div className="col-4">
+            <p> {myData?.current.temp_f} F </p>
+            <p> {myData?.current.temp_c} C </p>
+            <p>Humidity: {myData?.current.humidity}% </p>
+            <p>Precipitation: {myData?.current.precip_mm}%</p>
+            <p>Wind: {myData?.current.wind_mph} mph</p>
+          </div>
+        </div>
       </div>
     </div>
   );
