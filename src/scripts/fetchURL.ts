@@ -6,7 +6,7 @@ export function fetchURL(userI: string, mode: string) {
     case "current": {
       console.log(mode);
       return (
-        "http://api.weatherapi.com/v1/current.json?key=7a884dd5e91e4513a1a210128210110&q=" +
+        "https://api.weatherapi.com/v1/current.json?key=7a884dd5e91e4513a1a210128210110&q=" +
         userI +
         "&aqi=no"
       );
@@ -14,14 +14,14 @@ export function fetchURL(userI: string, mode: string) {
     case "forecast": {
       console.log(mode);
       return (
-        "http://api.weatherapi.com/v1/forecast.json?key=7a884dd5e91e4513a1a210128210110&q=" +
+        "https://api.weatherapi.com/v1/forecast.json?key=7a884dd5e91e4513a1a210128210110&q=" +
         userI +
         "&days=5&aqi=no&alerts=no"
       );
     }
     default: {
       return (
-        "http://api.weatherapi.com/v1/current.json?key=7a884dd5e91e4513a1a210128210110&q=" +
+        "https://api.weatherapi.com/v1/current.json?key=7a884dd5e91e4513a1a210128210110&q=" +
         userI +
         "&aqi=no"
       );
