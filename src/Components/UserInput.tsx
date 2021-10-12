@@ -11,7 +11,7 @@ export function UserInput(): JSX.Element {
   const [mode, setMode] = useState<string>("current");
   const [dd, setDD] = useState<string>("Current Weather ");
   return (
-    <div>
+    <div className = "App-body">
       <div className="main-weather-logo">
         <img src={weatherlogo}></img>
       </div>

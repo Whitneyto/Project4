@@ -1,4 +1,3 @@
-const APIKey: string = "7a884dd5e91e4513a1a210128210110";
 export function fetchURL(userI: string, mode: string) {
   userI = userI.replace(/\s/g, "");
   console.log(mode);
